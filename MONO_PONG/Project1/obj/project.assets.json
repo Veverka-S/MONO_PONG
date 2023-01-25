@@ -7471,23 +7471,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\veverka\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Maara\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\4. EP\\PVA\\MONOGAME\\MONO_PONG\\MONO_PONG\\Project1\\Project1.csproj",
+      "projectUniqueName": "C:\\Users\\Maara\\Documents\\4ep-projekty\\MONO_PONG\\MONO_PONG\\Project1\\Project1.csproj",
       "projectName": "Project1",
-      "projectPath": "G:\\4. EP\\PVA\\MONOGAME\\MONO_PONG\\MONO_PONG\\Project1\\Project1.csproj",
-      "packagesPath": "C:\\Users\\veverka\\.nuget\\packages\\",
-      "outputPath": "G:\\4. EP\\PVA\\MONOGAME\\MONO_PONG\\MONO_PONG\\Project1\\obj\\",
+      "projectPath": "C:\\Users\\Maara\\Documents\\4ep-projekty\\MONO_PONG\\MONO_PONG\\Project1\\Project1.csproj",
+      "packagesPath": "C:\\Users\\Maara\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Maara\\Documents\\4ep-projekty\\MONO_PONG\\MONO_PONG\\Project1\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\veverka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Maara\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7541,7 +7537,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
