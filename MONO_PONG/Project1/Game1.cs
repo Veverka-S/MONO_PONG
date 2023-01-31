@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Project1.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -15,12 +16,11 @@ namespace Project1
         public int _sW = 800;
         public int _sH = 600;
 
-       
-        Random random = new Random();
+        private Sprite _sprite1;
+        private Sprite _sprite2;
 
-        private Sprite _p1;
-        private Sprite _p2;
-        private Sprite _ball;
+        private List<Sprite> _sprites;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -42,27 +42,30 @@ namespace Project1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var bat = Content.Load<Texture2D>("bat");
+            var player = Content.Load<Texture2D>("bat");
             var ball = Content.Load<Texture2D>("ball");
 
-            _p1 = new Sprite(bat, 1);
-            _p1.Position = new Vector2(25, ((_sH/2) - 50));
-            _p2 = new Sprite(bat, 2);
-            _p2.Position = new Vector2((_sW - 50), ((_sH / 2) - 50));
-            _ball = new Sprite(ball, 0);
-            _ball.Position = new Vector2((_sW / 2) - (25 / 2), (_sH / 2) - (25 / 2));
+            _sprite1 = new Sprite(player)
+            {
+                Position = new Vector2(_sW - 25 - player.Width, _sH/2-(player.Height/2)),
+                Player = 2,
+            };
+            _sprite2 = new Sprite(player)
+            {
+                Position = new Vector2(25 + player.Width, _sH / 2 - (player.Height / 2)),
+                Player = 1,
+            };
+            
 
 
         }
 
         protected override void Update(GameTime gameTime)
         {
+            _sprite1.Update();
+            _sprite2.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            _p1.Update();
-            _p2.Update();
-            _ball.Update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -70,11 +73,10 @@ namespace Project1
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-            _p1.Draw(_spriteBatch);
-            _p2.Draw(_spriteBatch);
-            _ball.Draw(_spriteBatch);
+            _sprite1.Draw(_spriteBatch);
+            _sprite2.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
