@@ -46,10 +46,28 @@ namespace Project1.Sprites
                 restart();
             }
 
+            foreach(var sprite in sprites)
+            {
+                if(sprite == this)
+                {
+                    continue;
+                }
+
+                if(this.IsTouchingLeft(sprite) || this.IsTouchingRight(sprite))
+                {
+                    this.v.X *= -1;
+                }
+                if (this.IsTouchingBottom(sprite) || this.IsTouchingTop(sprite))
+                {
+                    this.v.Y *= -1;
+                }
+            }
+
         }
 
         public void restart()
         {
+            speed = Game1.random.Next(4, 6);
             Position = new Vector2((Game1._sW / 2) - (_texture.Width / 2), (Game1._sH / 2) - (_texture.Height / 2));
             start();
         }

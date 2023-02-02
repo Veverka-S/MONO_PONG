@@ -45,28 +45,16 @@ namespace Project1
             var ballJPG = Content.Load<Texture2D>("ball");
             var playerJPG = Content.Load<Texture2D>("bat");
 
-            _sprites = new List<Sprite>()
+            var ballCount = 1;
+            _sprites = new List<Sprite>();
+            for (int i = 0; i < ballCount; i++)
             {
-                new Ball(ballJPG)
+                _sprites.Add(new Ball(ballJPG)
                 {
                     Position = new Vector2((_sW / 2) - (ballJPG.Width / 2), (_sH / 2) - (ballJPG.Height / 2)),
-                },
-            };
-            
-
-            /*
-
-            _sprite1 = new Sprite(player)
-            {
-                Position = new Vector2(_sW - 25 - player.Width, _sH/2-(player.Height/2)),
-                Player = 2,
-            };
-            _sprite2 = new Sprite(player)
-            {
-                Position = new Vector2(25 + player.Width, _sH / 2 - (player.Height / 2)),
-                Player = 1,
-            };
-            */
+                    speed = random.Next(4, 6),
+                }); 
+            }
 
 
         }
