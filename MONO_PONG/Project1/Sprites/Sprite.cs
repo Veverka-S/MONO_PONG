@@ -11,60 +11,61 @@ namespace Project1.Sprites
 {
     public class Sprite
     {
-        private Texture2D _texture;
+        public Texture2D _texture;
         public Vector2 Position;
-        public int Player;
-        public float v = 4f;
+        public Vector2 v;
+        public float speed;
 
         public Input input;
 
+        public Rectangle rectangle
+        {
+            get
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+            }
+        }
         public Sprite(Texture2D texture)
         {
             _texture = texture;
         }
 
-        public void Update()
+        public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if (Player == 2)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                {
-                    Position.Y -= v;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                {
-                    Position.Y += v;
-                }
-            }
-            else if (Player == 1)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
-                {
-                    Position.Y -= v;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
-                {
-                    Position.Y += v;
-                }
-            }
-
-            if (Player != 0)
-            {
-                if(Position.Y < 0)
-                {
-                    Position.Y = 0;
-                }
-
-                if (Position.Y > 600 - _texture.Height)
-                {
-                    Position.Y = 600 - _texture.Height;
-                }
-            }
+          
 
         }
 
-        protected bool isTouchingLeft(Sprite sprite)
+        protected bool IsTouchingLeft(Sprite sprite)
         {
+            return this.rectangle.Right + this.v.X > sprite.rectangle.Left &&
+              this.rectangle.Left < sprite.rectangle.Left &&
+              this.rectangle.Bottom > sprite.rectangle.Top &&
+              this.rectangle.Top < sprite.rectangle.Bottom;
+        }
+
+        protected bool IsTouchingRight(Sprite sprite)
+        {
+            return this.rectangle.Left + this.v.X < sprite.rectangle.Right &&
+              this.rectangle.Right > sprite.rectangle.Right &&
+              this.rectangle.Bottom > sprite.rectangle.Top &&
+              this.rectangle.Top < sprite.rectangle.Bottom;
+        }
+
+        protected bool IsTouchingTop(Sprite sprite)
+        {
+            return this.rectangle.Bottom + this.v.Y > sprite.rectangle.Top &&
+              this.rectangle.Top < sprite.rectangle.Top &&
+              this.rectangle.Right > sprite.rectangle.Left &&
+              this.rectangle.Left < sprite.rectangle.Right;
+        }
+
+        protected bool IsTouchingBottom(Sprite sprite)
+        {
+            return this.rectangle.Top + this.v.Y < sprite.rectangle.Bottom &&
+              this.rectangle.Bottom > sprite.rectangle.Bottom &&
+              this.rectangle.Right > sprite.rectangle.Left &&
+              this.rectangle.Left < sprite.rectangle.Right;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
