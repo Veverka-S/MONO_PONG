@@ -15,6 +15,7 @@ namespace Project1.Sprites
     {
         private Vector2? _startPosition = null;
         private float? _startSpeed;
+        private int bouncecount = 0;
 
         public Ball(Texture2D texture)
             : base(texture)
@@ -38,12 +39,14 @@ namespace Project1.Sprites
 
             if(Position.Y < 0 || Position.Y > -_texture.Height + Game1._sH)
             {
+                bouncecount++;
                 v.Y *= -1;
             }
 
-            if (Position.X < 0 || Position.X > Game1._sW - _texture.Width)
+            if (Position.X < 0 -_texture.Width || Position.X > Game1._sW)
             {
-                restart();
+                v.X *= -1;
+                //restart();
             }
 
             foreach(var sprite in sprites)
@@ -53,14 +56,19 @@ namespace Project1.Sprites
                     continue;
                 }
 
-                if(this.IsTouchingLeft(sprite) || this.IsTouchingRight(sprite))
+                if(bouncecount > 0)
                 {
-                    this.v.X *= -1;
+                    if (this.IsTouchingLeft(sprite) || this.IsTouchingRight(sprite))
+                    {
+                        this.v.X *= -1;
+                    }
+                    if (this.IsTouchingBottom(sprite) || this.IsTouchingTop(sprite))
+                    {
+                        this.v.Y *= -1;
+                    }
                 }
-                if (this.IsTouchingBottom(sprite) || this.IsTouchingTop(sprite))
-                {
-                    this.v.Y *= -1;
-                }
+
+                
             }
 
         }

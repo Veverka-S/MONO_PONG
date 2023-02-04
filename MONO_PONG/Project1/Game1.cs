@@ -45,7 +45,7 @@ namespace Project1
             var ballJPG = Content.Load<Texture2D>("ball");
             var playerJPG = Content.Load<Texture2D>("bat");
 
-            var ballCount = 1;
+            var ballCount = 20;
             _sprites = new List<Sprite>();
             for (int i = 0; i < ballCount; i++)
             {
