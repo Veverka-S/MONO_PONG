@@ -45,8 +45,8 @@ namespace Project1.Sprites
 
             if (Position.X < 0 -_texture.Width || Position.X > Game1._sW)
             {
-                v.X *= -1;
-                //restart();
+                bouncecount = 0;
+                restart();
             }
 
             foreach(var sprite in sprites)

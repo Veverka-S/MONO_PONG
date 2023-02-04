@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace Project1
 {
@@ -45,7 +46,7 @@ namespace Project1
             var ballJPG = Content.Load<Texture2D>("ball");
             var playerJPG = Content.Load<Texture2D>("bat");
 
-            var ballCount = 20;
+            var ballCount = 8;
             _sprites = new List<Sprite>();
             for (int i = 0; i < ballCount; i++)
             {
@@ -55,7 +56,26 @@ namespace Project1
                     speed = random.Next(4, 6),
                 }); 
             }
-
+            _sprites.Add(
+                new Player(playerJPG)
+                {
+                    Position = new Vector2(50, (_sH / 2) - (playerJPG.Height / 2)),
+                    input = new Input()
+                    {
+                        up = Keys.W,
+                        down = Keys.S,
+                    }
+                });
+            _sprites.Add(
+                new Player(playerJPG)
+                {
+                    Position = new Vector2(_sW - playerJPG.Width - 50, (_sH / 2) - (playerJPG.Height / 2)),
+                    input = new Input()
+                    {
+                        up = Keys.Up,
+                        down = Keys.Down,
+                    }
+                });
 
         }
 
@@ -77,10 +97,6 @@ namespace Project1
             {
                 sprite.Draw(_spriteBatch);
             }
-            /*
-            _sprite1.Draw(_spriteBatch);
-            _sprite2.Draw(_spriteBatch);
-            */
             _spriteBatch.End();
             base.Draw(gameTime);
         }
